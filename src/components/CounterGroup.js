@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Counter from "./Counter";
-import { INIT_COUNTERS_SIZE } from "../../constants";
+import { INIT_COUNTERS_SIZE } from "../constants/constants.js";
 
 class CounterGroup extends Component {
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+import App from './App';
 // import Counter from './Counter';
-import CounterGroup from './components/CounterGroup';
+// import CounterGroup from './components/CounterGroup';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CounterGroup />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

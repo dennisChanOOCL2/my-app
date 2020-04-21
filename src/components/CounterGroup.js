@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Counter from "./Counter";
-import { INIT_COUNTERS_SIZE } from "../constants/constants.js";
+import {INIT_COUNTERS_SIZE} from "../constants/constants.js";
 
 class CounterGroup extends Component {
 
@@ -8,17 +8,15 @@ class CounterGroup extends Component {
         super(props);
 
         this.onChange = this.onChange.bind(this);
+        this.onCalculate = this.onCalculate.bind(this);
         this.state = {
             size: INIT_COUNTERS_SIZE,
+            sum: 0
         };
-
-        this.initArray = this.initArray.bind(this);
     }
 
     initArray(size) {
-        let array = Array.from(Array(size).keys());
-        console.log(array);
-        return array;
+        return Array.from(Array(size).keys());
     }
 
     onChange(event){
@@ -29,16 +27,40 @@ class CounterGroup extends Component {
         })
     }
 
+    onCalculate(changeNumber){
+        this.setState((prevState)=>{
+            return {
+                sum: prevState.sum + changeNumber
+            };
+        });
+    }
+
 
     render() {
         let counters = this.initArray(this.state.size);
         return (
             <div>
                 <form>
-                    <input onChange={this.onChange} type="text" value={this.state.size} />
+                    <fieldset>
+                        <label htmlFor="number">Generate </label>
+                        <input
+                            name={"number"}
+                            placeholder={"input number here..."}
+                            onChange={this.onChange}
+                            value={this.state.number}
+                        />
+                        <span> Counters</span>
+                        <p>
+                            Sum : <mark>{this.state.sum}</mark>
+                        </p>
+                    </fieldset>
                 </form>
                 {counters.map((value) => (
-                    <Counter key={value} />
+                    <Counter
+                        key={value}
+                        number={this.state.number}
+                        onCalculate={this.onCalculate}
+                    />
                 ))}
             </div>
         );
